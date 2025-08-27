@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JS Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1 id="header">My simple JavaScript</h1>
+
+  <p id="message">Click the buttons below.</p>
+
+  <button id="btnChangeText">Change Text</button>
+  <button id="btnShowNumbers">Show Numbers</button>
+  <button id="btnCheckAge">Check Age</button>
+
+  <ul id="numberList"></ul>
+
+  <script>
+
+   
+
+    // Variables declaration
+    let userName = "West";
+    let userAge = 23;
+
+    // Conditional check
+    if (userAge >= 18) {
+    console.log(`${userName} is an adult.`);
+    } else {
+    console.log(`${userName} is a minor.`);
+    }
+
+    // Custom Functions
+    
+    function greetUser(name) {
+    return `Hello, ${name}! Welcome to my Java page.`;
+    }
+
+    // Function to determine if a number is prime
+    function isPrime(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+    }
+
+ 
+    //  Loop Examples
+
+        function generateNumbers(n) {
+    const numbers = [];
+    for (let i = 1; i <= n; i++) {
+        numbers.push(i);
+    }
+    return numbers;
+    }
+
+ 
+    function countdown(n) {
+    const result = [];
+    while (n > 0) {
+        result.push(n);
+        n--;
+    }
+    return result;
+    }
+
+    
+    // DOM elements
+    const header = document.getElementById('header');
+    const message = document.getElementById('message');
+    const numberList = document.getElementById('numberList');
+
+    const btnChangeText = document.getElementById('btnChangeText');
+    const btnShowNumbers = document.getElementById('btnShowNumbers');
+    const btnCheckAge = document.getElementById('btnCheckAge');
+
+    // Button to change paragraph text and header color
+    btnChangeText.addEventListener('click', () => {
+    message.textContent = greetUser(userName);
+    header.style.color = getRandomColor();
+    });
+
+ 
+    btnShowNumbers.addEventListener('click', () => {
+    numberList.innerHTML = ""; 
+    const nums = generateNumbers(10);
+    for (let num of nums) {
+        const li = document.createElement('li');
+        li.textContent = num;
+        numberList.appendChild(li);
+    }
+    message.textContent = "Numbers 1 to 10 are listed below.";
+    });
+
+    //Button to check if userAge is prime and display result
+    btnCheckAge.addEventListener('click', () => {
+    const primeStatus = isPrime(userAge) ? "a prime number" : "not a prime number";
+    message.textContent = `Your age (${userAge}) is ${primeStatus}.`;
+    });
+
+   
+    function getRandomColor() {
+    let color = '#';
+    const hex = '0123456789ABCDEF';
+    for(let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+
+    // Initial greeting logged in console
+    console.log(greetUser(userName));
+
+  </script>
+</body>
+</html>
